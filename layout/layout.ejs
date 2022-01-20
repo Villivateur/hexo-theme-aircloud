@@ -27,6 +27,14 @@
     <div class="index-middle">
         <!-- Main Content -->
         <%- body %>
+        <%if( (is_post() || is_current('about')) && config.comment && config.comment.type === 'disqus'){%>
+            <div style="text-align: center;">
+                <button style="font-size: large; width: 80%;" id="loadDisqusButton" onclick="loadDisqus()">
+                    点击加载评论组件<br>
+                    请确保您的网络环境可以访问 Disqus
+                </button>
+            </div>
+        <% } %>
     </div>
 </div>
 
@@ -63,18 +71,23 @@
          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
          *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
         */
-        if( '<%- config.comment.url %>' || '<%- config.comment.identifier %>')
-        var disqus_config = function () {
-            this.page.url = '<%- config.comment.url %>';  // Replace PAGE_URL with your page's canonical URL variable
-            this.page.identifier = '<%- config.comment.identifier %>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
+        function loadDisqus() {
+            var elem = document.getElementById("loadDisqusButton");
+            elem.remove();
 
-        (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = '<%- config.comment.script %>';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        })();
+            if( '<%- config.comment.url %>' || '<%- config.comment.identifier %>')
+            var disqus_config = function () {
+                this.page.url = '<%- config.comment.url %>';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '<%- config.comment.identifier %>'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = '<%- config.comment.script %>';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        }
     </script>
 <% } %>
 
