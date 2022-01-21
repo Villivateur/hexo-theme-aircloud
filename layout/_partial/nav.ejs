@@ -28,10 +28,16 @@
                     <span><%= __('nav.archives') %></span>
                 </a>
             </li>
-            <li <% if(is_current('about')){ %> <%- "class=active" %> <% } %>>
+            <li>
                 <a href="https://www.vvzero.com">
                     <i class="iconfont icon-guanyu2"></i>
-                    <span>VVZERO</span>
+                    <span>主站</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://status.vvzero.com">
+                    <i class="iconfont icon-guanyu1"></i>
+                    <span>服务监测</span>
                 </a>
             </li>
             <%if(config.search && config.search.path){%>
