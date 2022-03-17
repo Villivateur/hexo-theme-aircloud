@@ -48,7 +48,7 @@
     window.hexo_root = "<%- config.root %>"
     window.isPost = <%- is_post() %>
 </script>
-<script src="https://source.vvzero.com/jquery/jquery-3.3.1.min.js"></script>
+<script src="/static/jquery-3.3.1.min.js"></script>
 <%- js('js/index.js') %>
 <%if( (is_post() || is_current('about')) && config.comment && config.comment.type === 'gitment'){%>
 <%- js('js/gitment.js') %>
