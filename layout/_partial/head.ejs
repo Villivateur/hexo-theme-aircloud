@@ -1,17 +1,16 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<%= config.description %>">
-    <meta name="keyword"  content="<%= config.keyword %>">
+    <meta name="keywords"  content="<%= config.keywords %>">
     <link rel="shortcut icon" href="<%= config.favicon %>">
 
     <title>
         <% if (page.title) { %>
-        <%= page.title + ' - ' + config.SEOTitle %>
+        <%= page.title + ' - ' + config.title %>
         <% } else{%>
-        <%= config.SEOTitle %>
+        <%= config.title %>
         <% } %>
     </title>
 
