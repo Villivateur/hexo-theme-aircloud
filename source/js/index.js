@@ -43,6 +43,7 @@ const searchField = document.getElementById('search-field')
 const searchInput = document.getElementById('search-input')
 const searchResultContainer = document.getElementById('search-result-container')
 const escSearch = document.getElementById('esc-search')
+const bgSearch = document.getElementById('search-bg')
 const beginSearch = document.getElementById('begin-search')
 
 searchField.addEventListener('mousewheel',(e) => {
@@ -59,6 +60,10 @@ searchButton.addEventListener('click', () => {
 });
 
 escSearch.addEventListener('click',() => {
+    hideSearchField()
+})
+
+bgSearch.addEventListener('click',() => {
     hideSearchField()
 })
 
@@ -315,21 +320,24 @@ if(window.isPost){
             let minTopsValue = ""
 
             for (let item of nameArray) {
+                item = decodeURIComponent(item);
                 let dom = document.getElementById(item) || document.getElementById(item.replace(/\s/g, ''))
-                if (!dom) continue
+                if (!dom) {
+                    console.log('dom is null')
+                    continue
+                }
                 let toTop = getDistanceOfLeft(dom).top - scrollToTop;
 
                 if (Math.abs(toTop) < minTop) {
                     minTop = Math.abs(toTop)
                     minTopsValue = item
                 }
-
                 // console.log(minTopsValue, minTop)
             }
 
             if (minTopsValue) {
                 for (let item of result) {
-                    if (item.value.indexOf(minTopsValue) !== -1) {
+                    if (item.value.indexOf(encodeURIComponent(minTopsValue)) !== -1) {
                         item.dom.classList.add("active")
                     } else {
                         item.dom.classList.remove("active")
